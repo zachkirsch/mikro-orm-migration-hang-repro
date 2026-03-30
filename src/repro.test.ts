@@ -20,16 +20,10 @@ afterAll(async () => {
 
 test("migrator.up() with external transaction hangs", async () => {
   const em = orm.em.fork();
-
   await em.begin();
-  try {
-    await orm.migrator.up({
-      migrations: ["Migration20250101000000_AddEmailToUser"],
-      transaction: em.getTransactionContext(),
-    });
-    await em.commit();
-  } catch (e) {
-    await em.rollback();
-    throw e;
-  }
+  await orm.migrator.up({
+    migrations: ["Migration20250101000000_AddEmailToUser"],
+    transaction: em.getTransactionContext(),
+  });
+  await em.commit();
 });
