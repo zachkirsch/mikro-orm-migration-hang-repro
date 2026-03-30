@@ -6,6 +6,8 @@ Calling `migrator.up({ transaction })` with `snapshot: true` (the default) deadl
 
 ## Repro
 
+Test file: [src/repro.test.ts](src/repro.test.ts).
+
 1. `docker compose up`
 2. `npm install && npm test`
 
